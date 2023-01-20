@@ -2,6 +2,10 @@
 
 ![flow](./flow.png)
 
+## PoC
+
+- [React + react-flow](https://stackblitz.com/github/sitek94/react-flow-demo)
+
 ## React vs Svelte
 
 - **React**
