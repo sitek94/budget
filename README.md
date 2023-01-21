@@ -2,15 +2,17 @@
 
 ![flow](./flow.png)
 
-## PoC
+## Stack
 
-- [React + react-flow](https://stackblitz.com/github/sitek94/react-flow-demo)
+- Budget Planner
+  - React
+  - Next.js
+  - [react-flow](https://reactflow.dev/)
 
-## React vs Svelte
+## FAQ
 
-- **React**
-  - https://reactflow.dev/
-- **Svelte**
-  - https://www.svelvet.io/
+- [Why not Svelte for Budget Planner?](https://github.com/sitek94/budget/issues/1)
+
+
 
 
