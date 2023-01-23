@@ -3,5 +3,5 @@ export default function Expenses() {
     <>
       <h1>Expenses</h1>
     </>
-  );
+  )
 }

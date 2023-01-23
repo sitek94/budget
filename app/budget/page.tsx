@@ -3,5 +3,5 @@ export default function Budget() {
     <>
       <h1>Expenses</h1>
     </>
-  );
+  )
 }
