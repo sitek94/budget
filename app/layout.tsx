@@ -1,4 +1,6 @@
+import 'reactflow/dist/base.css'
 import './globals.css'
+
 import Link from 'next/link'
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
@@ -9,7 +11,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className="flex h-screen flex-col">
         <nav className="flex gap-2 border-b border-gray-200 p-2">
           <Link className="hover:underline" href="/budget">
             Budget
@@ -18,7 +20,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             Expenses
           </Link>
         </nav>
-        <main className="p-2">{children}</main>
+        <main className="grow p-2">{children}</main>
       </body>
     </html>
   )

@@ -1,7 +1,9 @@
+import {Graph} from './graph/graph'
+
 export default function Budget() {
   return (
     <>
-      <h1>Expenses</h1>
+      <Graph />
     </>
   )
 }
