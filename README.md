@@ -4,10 +4,10 @@
 
 ## Stack
 
-- Budget Planner
-  - React
-  - Next.js
-  - [react-flow](https://reactflow.dev/)
+- React
+- Next.js
+- [react-flow](https://reactflow.dev/)
+- Google Sheets API 
 
 ## FAQ
 
