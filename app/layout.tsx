@@ -20,7 +20,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             Expenses
           </Link>
         </nav>
-        <main className="grow p-2">{children}</main>
+        <main className="grow p-2">
+          {children}
+        </main>
       </body>
     </html>
   )
