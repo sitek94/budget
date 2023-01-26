@@ -19,6 +19,10 @@
     "reactflow": "^11.4.2"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -31,6 +35,7 @@
     "prettier-plugin-packagejson": "^2.4.0",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^3.2.4",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "typography,": "link:@tailwindcss/typography,"
   }
 }

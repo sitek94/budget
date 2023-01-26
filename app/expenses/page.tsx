@@ -15,21 +15,48 @@ const sheets = google.sheets({
 })
 
 export default async function Expenses() {
-  const spreadsheet = await sheets.spreadsheets.get({
-    spreadsheetId,
-  })
+  // const spreadsheet = await sheets.spreadsheets.get({
+  //   spreadsheetId,
+  // })
 
-  const {title} = spreadsheet.data.sheets?.[0].properties || {}
+  // const {title} = spreadsheet.data.sheets?.[0].properties || {}
 
-  const data = await sheets.spreadsheets.values.get({
-    spreadsheetId,
-    range: `${title}!A1:B10`,
-  })
+  // const data = await sheets.spreadsheets.values.get({
+  //   spreadsheetId,
+  //   range: `${title}!A1:B10`,
+  // })
+
+  const dummyData = [
+    ['Groceries', 100],
+    ['Rent', 1000],
+    ['Internet', 40],
+    ['Phone', 20],
+    ['Electricity', 60],
+    ['Gas', 20],
+    ['Water', 20],
+    ['Car Insurance', 100],
+  ]
 
   return (
     <>
       <h1>Expenses</h1>
-      <pre>{JSON.stringify(data.data, null, 2)}</pre>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dummyData.map((row, index) => (
+            <tr key={index}>
+              {row.map((cell, index) => (
+                <td key={index}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   )
 }

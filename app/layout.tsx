@@ -12,7 +12,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       */}
       <head />
       <body className="flex h-screen flex-col">
-        <nav className="flex gap-2 border-b border-gray-200 p-2">
+        <nav className="flex gap-2 border-b border-gray-200 p-4">
           <Link className="hover:underline" href="/budget">
             Budget
           </Link>
@@ -20,9 +20,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             Expenses
           </Link>
         </nav>
-        <main className="grow p-2">
-          {children}
-        </main>
+        <main className="prose grow p-4">{children}</main>
       </body>
     </html>
   )
