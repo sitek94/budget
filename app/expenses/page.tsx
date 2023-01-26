@@ -15,27 +15,18 @@ const sheets = google.sheets({
 })
 
 export default async function Expenses() {
-  // const spreadsheet = await sheets.spreadsheets.get({
-  //   spreadsheetId,
-  // })
+  const spreadsheet = await sheets.spreadsheets.get({
+    spreadsheetId,
+  })
 
-  // const {title} = spreadsheet.data.sheets?.[0].properties || {}
+  const {title} = spreadsheet.data.sheets?.[0].properties || {}
 
-  // const data = await sheets.spreadsheets.values.get({
-  //   spreadsheetId,
-  //   range: `${title}!A1:B10`,
-  // })
+  const data = await sheets.spreadsheets.values.get({
+    spreadsheetId,
+    range: `${title}!A1:B10`,
+  })
 
-  const dummyData = [
-    ['Groceries', 100],
-    ['Rent', 1000],
-    ['Internet', 40],
-    ['Phone', 20],
-    ['Electricity', 60],
-    ['Gas', 20],
-    ['Water', 20],
-    ['Car Insurance', 100],
-  ]
+  const [header, ...rows] = data.data.values || []
 
   return (
     <>
@@ -43,12 +34,13 @@ export default async function Expenses() {
       <table>
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Price</th>
+            {header.map((cell, index) => (
+              <th key={index}>{cell}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {dummyData.map((row, index) => (
+          {rows.map((row, index) => (
             <tr key={index}>
               {row.map((cell, index) => (
                 <td key={index}>{cell}</td>
