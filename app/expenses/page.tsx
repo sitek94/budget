@@ -23,7 +23,7 @@ export default async function Expenses() {
 
   const data = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `${title}!A1:B10`,
+    range: `${title}!A1:C10`,
   })
 
   const [header, ...rows] = data.data.values || []
