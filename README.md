@@ -5,7 +5,7 @@
 ## Stack
 
 - React
-- Next.js
+- Remix
 - [react-flow](https://reactflow.dev/)
 - Google Sheets API
 

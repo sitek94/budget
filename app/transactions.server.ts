@@ -4,34 +4,37 @@ import { z } from "zod";
 const credentialsFilename = process.env.CREDENTIALS_FILENAME;
 const spreadsheetId = process.env.SPREADSHEET_ID;
 const scopes = process.env.SCOPES;
+const range = `A1:C10`;
 
 const auth = new google.auth.GoogleAuth({
   keyFilename: credentialsFilename,
   scopes,
 });
 
-const sheets = google.sheets({
+const service = google.sheets({
   version: "v4",
   auth,
 });
 
-const Transaction = z.object({
+export const transactionSchema = z.object({
   id: z.string(),
   description: z.string(),
   price: z.string(),
   date: z.string(),
 });
 
+type Transaction = z.infer<typeof transactionSchema>;
+
 async function fetchTransactionsSheetValues() {
-  const spreadsheet = await sheets.spreadsheets.get({
+  const spreadsheet = await service.spreadsheets.get({
     spreadsheetId,
   });
 
   const { title } = spreadsheet.data.sheets?.[0].properties || {};
 
-  const data = await sheets.spreadsheets.values.get({
+  const data = await service.spreadsheets.values.get({
     spreadsheetId,
-    range: `${title}!A1:C10`,
+    range: `${title}!${range}`,
   });
 
   const values = data.data.values;
@@ -58,7 +61,7 @@ export async function getTransactionsTable() {
     const price = row[columnIndexMap.price];
     const date = row[columnIndexMap.date];
 
-    return Transaction.parse({
+    return transactionSchema.parse({
       id: String(index),
       description,
       price,
@@ -70,4 +73,21 @@ export async function getTransactionsTable() {
     columnNames,
     transactions,
   };
+}
+
+export async function createTransaction(transaction: Transaction) {
+  const newRow = columnOrder.map((column) => transaction[column]);
+
+  const requestBody = {
+    values: [newRow],
+  };
+
+  const result = await service.spreadsheets.values.append({
+    spreadsheetId,
+    range,
+    requestBody,
+    valueInputOption: "USER_ENTERED",
+  });
+
+  return result;
 }
