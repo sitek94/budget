@@ -2,27 +2,21 @@ import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 
-import { createTransaction, transactionSchema } from "~/transactions.server";
+import { createTransaction } from "~/models/transaction.server";
+import { requireUserId } from "~/session.server";
 
 export async function action({ request }: ActionArgs) {
+  const userId = await requireUserId(request);
+
   const formData = await request.formData();
   const description = formData.get("description");
   const price = formData.get("price");
 
-  const date = new Date().toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
-  console.log({ description, price, date });
-
-  const transaction = transactionSchema.parse({
-    id: "",
-    description,
-    price,
-    date,
-  });
+  const transaction = {
+    description: description as string,
+    price: Number(price),
+    userId,
+  };
 
   await createTransaction(transaction);
 

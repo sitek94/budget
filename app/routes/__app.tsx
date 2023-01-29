@@ -20,7 +20,9 @@ export default function AppLayout() {
           </NavLink>
         ))}
       </nav>
-      <Outlet />
+      <main className="prose p-4">
+        <Outlet />
+      </main>
     </>
   );
 }
